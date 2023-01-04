@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <form method="POST" action="/students/create">{% csrf_token %}
+    <input type="text" class="form-control" placeholder="Code" name="code" />
+    <input type="submit" value="Save" />
+</form> {% endcomment %}
+{% comment %} {% for student in students %}
+    <p> {{ student.id }} -
+        <a href="{{student.get_absolute_url}}"> {{ student.name }} </a>
+    </p> {% endcomment %}
+<form class="form">
+    <div class="row">
+        <div class="col-auto">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="keyword"
+                name="keyword"
+                value="{{keyword|default:''}}"
+            />
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" value ="Search" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <thred>
+        <th>Ma Phong</th>
+        <th>Ten Phong</th>
+        <th>Den</th>
+        <th>Ban Ghe</th>
+        <th>May chieu</th>
+        <th>Quat</th>
+        <th>Dieu Hoa</th>
+        <th>Khu</th>
+        <th>
+            <a href="{% url 'create' %}" class = "btn btn-success">Add</a>
+        </th>
+    </thread>
+<tbody>
+    {% for student in students %}
+    <tr>
+        <td>{{ student.code }} </td>
+        <td><a href="{{ student.get_absolute_url }}"> {{student.name}} </a> </td>
+        <td>{{ student.den }} </td>
+        <td>{{ student.ban_ghe  | default:'-' }}  </td>
+        <td>{{ student.may_chieu  | default:'-'  }} </td>
+        <td>{{ student.quat  | default:'-'  }} </td>
+        <td>{{ student.dieu_hoa  | default:'-'  }} </td>
+        <td>{{ student.department  | default:'-'  }} </td>
+        <td>
+            <a href="{% url 'update' student.id %}" class = "btn btn-primary">Update</a>
+            <a href="{% url 'delete' student.id %}" class = "btn btn-danger">Delete</a>
+        </td>
+
+{% endfor %}
+{% endblock %}
+    </tbody>
+</table>

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+{% comment %} <form method="POST" action="/students/create">{% csrf_token %}
+    <input type="text" class="form-control" placeholder="Code" name="code" />
+    <input type="submit" value="Save" />
+</form> {% endcomment %}
+<form class="form" method="POST" >{% csrf_token %}
+    <h3>Do you want to delete the student "{{student.name}}"?</h3>
+    <input type="submit" class = "btn btn-danger" value="Submit" />
+    <a href="/csvc" class = "btn btn-primary" >Cancel </a>
+</form>
+{% endblock %}
